@@ -25,35 +25,5 @@ public class FarmaciaControllerTest {
     @Mock
     FarmaciaService farmaciaService;
 
-    @Test
-    public void test_getFarmacia() throws Exception {
-        List<FarmaciaDTO> lstFarm = List.of(new FarmaciaDTO());
-
-        ResponseEntity<FarmaciaDTO[]> response = ResponseEntity.ok(
-                lstFarm.toArray(FarmaciaDTO[]::new));
-        ResponseEntity<FarmaciaDTO[]> responseR;
-        Mockito.when(farmaciaService.getFarmacia(anyString(),anyString(),anyString()))
-                .thenReturn(response);
-
-        responseR = farmaciaService.getFarmacia("","","");
-
-
-        Assert.assertEquals(responseR, farmaciaController.getFarmacia("","",""));
-
-    }
-
-    @Test
-    public void test_getFarmacias() throws Exception {
-        List<FarmaciaDTO> lstFarm = List.of(new FarmaciaDTO());
-        ResponseEntity<FarmaciaDTO[]> responseR;
-        ResponseEntity<FarmaciaDTO[]> response = ResponseEntity.ok(
-                lstFarm.toArray(FarmaciaDTO[]::new));
-
-        Mockito.when(farmaciaService.getFarmacias(anyString()))
-                .thenReturn(response);
-
-        responseR = farmaciaService.getFarmacias("");
-
-        Assert.assertEquals(responseR, farmaciaController.getFarmacias(""));
-    }
+   
 }
