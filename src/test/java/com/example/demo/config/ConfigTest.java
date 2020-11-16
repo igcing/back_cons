@@ -28,12 +28,3 @@ public class ConfigTest {
 
     }
 }
-/*String value = "A";
-        Config config = mock(Config.class);
-        doNothing().when(config).setFarmacia(anyString());
-        config.setFarmacia(value);
-        verify(config, times(1)).setFarmacia(anyString());
-
-        Mockito.when(config.getFarmacia()).thenReturn(value);
-
-        Assert.assertEquals(value, config.getFarmacia());*/

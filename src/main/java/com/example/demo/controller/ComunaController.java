@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.constants.Constants;
 import com.example.demo.dto.ComunaDTO;
 import com.example.demo.services.ComunaService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * Controlador para obtener las comunas
  */
 @RestController
-@RequestMapping("/search/comuna")
+@RequestMapping(Constants.ENDPOINT_COMUNA_CONTROLLER)
 @Slf4j
 @CrossOrigin(origins = "*")
 public class ComunaController {

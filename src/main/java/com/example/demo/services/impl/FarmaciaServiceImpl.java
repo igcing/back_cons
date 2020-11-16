@@ -33,6 +33,12 @@ public class FarmaciaServiceImpl implements FarmaciaService {
       this.config = config;
    }
 
+   /**
+    * Método para obtener farmacias por region
+    * @param idRegion
+    * @return ResponseEntity<FarmaciaDTO[]>
+    * @throws Exception
+    */
    public ResponseEntity<FarmaciaDTO[]> getFarmacias(String idRegion) throws Exception {
       String url = config.getFarmacia();
       log.info("url: {}" , url);
@@ -48,11 +54,6 @@ public class FarmaciaServiceImpl implements FarmaciaService {
          throws Exception {
       ResponseEntity<FarmaciaDTO[]> response = this.getFarmacias(idRegion);
       log.info("idComuna => {} - nombreLocal: {}" , idComuna, nombreLocal);
-      /*Predicate<FarmaciaDTO> equalComuna = x -> idComuna.equals(x.getFk_comuna());
-      Predicate<FarmaciaDTO> containsNombreLocal = x -> nombreLocal.contains(x.getLocal_nombre()) ;
-      Predicate<FarmaciaDTO> finalFilter = equalComuna.or(containsNombreLocal);*/
-
-
       Stream<FarmaciaDTO> stream = Arrays.stream(response.getBody());
       FarmaciaDTO[] filtered =  stream.parallel().filter(x ->
               FilterPredicate.isSatisfyFilter(idComuna,nombreLocal).test(x)
@@ -61,8 +62,4 @@ public class FarmaciaServiceImpl implements FarmaciaService {
 
       return ResponseEntity.ok(filtered);
    }
-/*
-   Request =>  Comuna (Cerrillos, Macul, etc), Nombre del local (Ahumada, Cruz Verde, etc.)
-   Response =>  Nombre de local, Dirección, Teléfono, Latitud, Longitud.
-*/
 }
